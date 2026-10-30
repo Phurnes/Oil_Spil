@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: sar-oil-spill-backend
+    env: python
+    rootDir: backend
+    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: DEBUG
+        value: false
+      - key: CORS_ORIGINS
+        value: '["*"]'
+      - key: MODEL_PATH
+        value: models/unet_oilspill_model.keras
